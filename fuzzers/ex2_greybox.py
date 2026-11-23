@@ -87,7 +87,9 @@ def main(budget: float):
 
     start, execs = time.time(), 0
     while time.time() - start < budget:
-        child = mutate(random.choice(corpus))
+        # Como AFL, damos prioridad a las entradas mas recientes (las que mas han "avanzado")
+        parent = random.choice(corpus[-3:]) if random.random() < 0.5 else random.choice(corpus)
+        child = mutate(parent)
         for _ in range(random.randint(0, 3)):   # a veces, varias mutaciones seguidas
             child = mutate(child)
         execs += 1
