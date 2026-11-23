@@ -58,7 +58,8 @@ python fuzzers/ex3_grammar.py       # ej. 3 y 4 (usa grammars/egc.fan)
 ### Ejercicio 5: CI/CD
 
 1. Haz **fork** de este repo y activa *Actions* en tu fork.
-2. Haz un push cualquiera: el workflow ejecuta todos los fuzzers y el pipeline se pone **en rojo**. Descarga el artifact `crashes`.
+2. Haz un push: el workflow ejecuta **tus** fuzzers ([fuzzers/ci_fuzz.py](fuzzers/ci_fuzz.py)). Con los ejercicios sin hacer sale **verde**... ¿significa eso que el código no tiene bugs? 🤔
+   Completa los ejercicios, haz push otra vez y verás el pipeline **en rojo**. Descarga el artifact `crashes`.
 3. Arregla un bug en `target/egc_parser.py`, haz push y comprueba que ese bug desaparece del informe.
 4. ¿Consigues un pipeline **verde**?
 
@@ -71,7 +72,7 @@ python fuzzers/ex3_grammar.py       # ej. 3 y 4 (usa grammars/egc.fan)
 - **⭐⭐ Atheris.** Usa [Atheris](https://github.com/google/atheris), el fuzzer de Google para Python, sobre `process()`. Funciona mejor en Linux o Codespaces.
 - **⭐⭐⭐ Arréglalo todo.** Corrige todos los bugs y consigue que el CI pase en verde 5 veces seguidas.
 
-Las soluciones están en [solutions/](solutions/). Sin trampas 😉
+Las soluciones están en la rama [`solutions`](../../tree/solutions). Sin trampas 😉
 
 ---
 Más para casa: [HOMEWORK.md](HOMEWORK.md)
