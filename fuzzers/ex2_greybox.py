@@ -14,6 +14,13 @@ TODO 2: anade semillas en seeds/ (ficheros con entradas validas).
         ¿Que pasa si no hay semillas? ¿Y si las hay?
 
 Ejecuta:   python workshop.py ex2            (90 segundos por defecto)
+
+⭐ SI VAS RAPIDO (opcional, elige uno):
+   a) Diccionario: anade una cuarta mutacion que inserte una palabra clave
+      ("CALC ", "MSG ", "(", ...) en una posicion aleatoria.
+      ¿Encuentra bugs nuevos o mas rapido? AFL++ llama a esto "dictionaries".
+   b) Sin semillas: mueve los ficheros de seeds/ a otra carpeta y lanzalo.
+      ¿Llega a pasar de la cabecera? ¿Por que las semillas importan tanto?
 """
 import os
 import random

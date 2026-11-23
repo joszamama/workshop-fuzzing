@@ -62,15 +62,15 @@ Las entradas que provocan crash se guardan en `crashes/`. Para reproducir una:
 
 ## Ejercicios
 
-| # | Técnica | Fichero | Tiempo |
-|---|---------|---------|--------|
-| 1 | Fuzzing aleatorio (blackbox) | [fuzzers/ex1_random.py](fuzzers/ex1_random.py) | ~5 min |
-| 2 | Fuzzing guiado por cobertura (greybox) | [fuzzers/ex2_greybox.py](fuzzers/ex2_greybox.py) | ~12 min |
-| 3 | Fuzzing con gramáticas (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min |
-| 4 | Gramáticas + restricciones (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min |
-| 5 | CI/CD: fuzzing en cada push (GitHub Actions) | [.github/workflows/fuzz.yml](.github/workflows/fuzz.yml) | ~10 min |
+| # | Técnica | Fichero | Tiempo | ⭐ Si vas rápido |
+|---|---------|---------|--------|------------------|
+| 1 | Fuzzing aleatorio (blackbox) | [fuzzers/ex1_random.py](fuzzers/ex1_random.py) | ~5 min | Fuzzer "con trampa" que empieza por `EGC/1` |
+| 2 | Fuzzing guiado por cobertura (greybox) | [fuzzers/ex2_greybox.py](fuzzers/ex2_greybox.py) | ~12 min | Diccionario de palabras clave / sin semillas |
+| 3 | Fuzzing con gramáticas (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | El bug secreto de Unicode |
+| 4 | Gramáticas + restricciones (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | Arregla el bug y comprueba que desaparece |
+| 5 | CI/CD: fuzzing en cada push (GitHub Actions) | [.github/workflows/fuzz.yml](.github/workflows/fuzz.yml) | ~10 min | Fuzzing nocturno con `schedule` |
 
-Cada fichero tiene marcados los `TODO` y unas preguntas para pensar. Edítalo y lánzalo con `python workshop.py exN`.
+Cada fichero tiene marcados los `TODO`, unas preguntas para pensar y un **⭐ extra opcional** al final por si terminas antes. Si no te da tiempo al extra, sigue con el siguiente ejercicio cuando lo diga el profe. Edítalo y lánzalo con `python workshop.py exN`.
 
 ### Ejercicio 5: CI/CD
 
@@ -85,16 +85,11 @@ Cada fichero tiene marcados los `TODO` y unas preguntas para pensar. Edítalo y 
 4. Arregla un bug en `target/egc_parser.py`, haz push y comprueba que ese bug desaparece del informe.
 5. ¿Consigues un pipeline **verde**?
 
-## ¿Vas sobrado? Extras ⭐
-
-- **⭐ El bug secreto.** Hay al menos un bug que no está "previsto". El greybox suele encontrarlo. ¿Por qué ocurre? Pista: Unicode.
-- **⭐ Diccionario.** Mejora `mutate()` para que a veces inserte palabras clave (`"CALC "`, `"MSG "`, `"DEBUG"`…). ¿Cuánto más rápido encuentra los bugs? AFL++ lo llama *dictionaries*.
-- **⭐ Sin semillas.** Borra `seeds/` y lanza el greybox. ¿Llega a pasar de la cabecera? ¿Por qué?
-- **⭐⭐ Oráculo diferencial.** Compara el resultado de `CALC` con `eval()` de Python sobre la misma expresión. ¿Coinciden siempre? (Pista: ¿qué hace `/` en cada uno?)
-- **⭐⭐ Atheris.** Usa [Atheris](https://github.com/google/atheris), el fuzzer de Google para Python, sobre `process()`. Funciona mejor en Linux o Codespaces.
-- **⭐⭐⭐ Arréglalo todo.** Corrige todos los bugs y consigue que el CI pase en verde 5 veces seguidas.
+⭐ **Si vas rápido:** en la vida real no se hace fuzzing solo 2 minutos por push. Añade al workflow un
+trigger `schedule` (p.ej. `cron: "0 3 * * *"`) para un fuzzing "nocturno" más largo.
+¿Cómo harías que el nocturno dure más que el de cada push? (Pista: `github.event_name`)
 
 Las soluciones están en la rama [`solutions`](../../tree/solutions). Sin trampas 😉
 
 ---
-Más para casa: [HOMEWORK.md](HOMEWORK.md)
+¿Te has quedado con ganas? Retos para casa en [HOMEWORK.md](HOMEWORK.md)

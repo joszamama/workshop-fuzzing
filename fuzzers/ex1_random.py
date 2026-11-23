@@ -12,6 +12,11 @@ Ejecuta:   python workshop.py ex1            (30 segundos por defecto)
 Preguntas:
   - ¿Cuantos bugs encuentra? ¿Que tipo de bugs son?
   - ¿Cuantas entradas pasan de la cabecera "EGC/1"? ¿Por que?
+
+⭐ SI VAS RAPIDO (opcional, no pasa nada si lo dejas a medias):
+   Haz un fuzzer "con trampa": que la mitad de las veces genere
+   b"EGC/1\n" + texto aleatorio. ¿Encuentra mas bugs? ¿Por que no?
+   Pista: random.choice("CALCMSG 0123456789()+-*/:") para generar texto "con sentido".
 """
 import random
 import sys
