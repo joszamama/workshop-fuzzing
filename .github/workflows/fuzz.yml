@@ -1,8 +1,8 @@
 name: Fuzzing
 
+# En la rama solutions el CI es solo manual (Actions -> Fuzzing -> Run workflow),
+# para no recibir un email de fallo en cada push.
 on:
-  push:
-  pull_request:
   workflow_dispatch:
 
 jobs:
