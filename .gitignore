@@ -1,0 +1,4 @@
+crashes/
+__pycache__/
+.venv/
+venv/

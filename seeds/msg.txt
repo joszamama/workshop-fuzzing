@@ -1,0 +1,2 @@
+EGC/1
+MSG 4:hola
