@@ -6,8 +6,8 @@ Idea: generar entradas completamente aleatorias y lanzarlas contra el programa.
 TODO: completa random_input() para que devuelva bytes aleatorios
       de longitud aleatoria (por ejemplo entre 0 y 100).
 
-Ejecuta:   python fuzzers/ex1_random.py            (30 segundos por defecto)
-           python fuzzers/ex1_random.py 10         (10 segundos)
+Ejecuta:   python workshop.py ex1            (30 segundos por defecto)
+           python workshop.py ex1 10         (10 segundos)
 
 Preguntas:
   - ¿Cuantos bugs encuentra? ¿Que tipo de bugs son?
@@ -36,4 +36,7 @@ def main(budget: float):
 
 
 if __name__ == "__main__":
-    main(float(sys.argv[1]) if len(sys.argv) > 1 else 30)
+    try:
+        main(float(sys.argv[1]) if len(sys.argv) > 1 else 30)
+    except KeyboardInterrupt:
+        print("\nInterrumpido.")

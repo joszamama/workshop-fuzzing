@@ -8,12 +8,12 @@ corpus para seguir mutandola. Asi el fuzzer "aprende" el formato poco a poco.
 Este fuzzer cabe en ~60 lineas. AFL++ hace lo mismo pero en C,
 instrumentando el binario y a millones de ejecuciones por segundo.
 
-TODO 1: completa mutate() con al menos dos mutaciones mas
-        (p.ej. borrar un byte, insertar un byte aleatorio).
+TODO 1: completa mutate() con las tres mutaciones
+        (cambiar, borrar e insertar un byte). Sin ellas, el fuzzer no muta nada!
 TODO 2: anade semillas en seeds/ (ficheros con entradas validas).
         ¿Que pasa si no hay semillas? ¿Y si las hay?
 
-Ejecuta:   python fuzzers/ex2_greybox.py            (90 segundos por defecto)
+Ejecuta:   python workshop.py ex2            (90 segundos por defecto)
 """
 import os
 import random
@@ -51,9 +51,10 @@ def mutate(data: bytes) -> bytes:
     data = bytearray(data)
     choice = random.randint(0, 2)
 
-    if choice == 0 and data:          # cambiar un byte por otro aleatorio
-        pos = random.randrange(len(data))
-        data[pos] = random.randrange(256)
+    if choice == 0:
+        # TODO: cambiar un byte en una posicion aleatoria por otro aleatorio
+        # Pista: random.randrange(len(data)) da una posicion, random.randrange(256) un byte
+        pass
 
     elif choice == 1:
         # TODO: borrar un byte en una posicion aleatoria
@@ -103,4 +104,7 @@ def main(budget: float):
 
 
 if __name__ == "__main__":
-    main(float(sys.argv[1]) if len(sys.argv) > 1 else 90)
+    try:
+        main(float(sys.argv[1]) if len(sys.argv) > 1 else 90)
+    except KeyboardInterrupt:
+        print("\nInterrumpido.")

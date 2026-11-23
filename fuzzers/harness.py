@@ -7,6 +7,11 @@ import os
 import sys
 import traceback
 
+try:  # emojis y acentos en la consola de Windows
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)
+except Exception:
+    pass
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "target"))
 from egc_parser import ParseError, process  # noqa: E402
 

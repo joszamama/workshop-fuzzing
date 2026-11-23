@@ -2,7 +2,7 @@
 Ejecuta TUS fuzzers (ejercicios 1-4) con un presupuesto de tiempo corto, pensado para CI.
 Sale con codigo 1 si se encuentra algun bug -> el pipeline se pone en rojo.
 
-    python fuzzers/ci_fuzz.py [segundos_por_fuzzer]
+    python workshop.py ci [segundos_por_fuzzer]
 """
 import os
 import sys
