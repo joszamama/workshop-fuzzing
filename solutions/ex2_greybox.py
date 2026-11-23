@@ -14,6 +14,13 @@ TODO 2: anade semillas en seeds/ (ficheros con entradas validas).
         ¿Que pasa si no hay semillas? ¿Y si las hay?
 
 Ejecuta:   python workshop.py ex2            (90 segundos por defecto)
+
+⭐ SI VAS RAPIDO (opcional, elige uno):
+   a) Diccionario: anade una cuarta mutacion que inserte una palabra clave
+      ("CALC ", "MSG ", "(", ...) en una posicion aleatoria.
+      ¿Encuentra bugs nuevos o mas rapido? AFL++ llama a esto "dictionaries".
+   b) Sin semillas: mueve los ficheros de seeds/ a otra carpeta y lanzalo.
+      ¿Llega a pasar de la cabecera? ¿Por que las semillas importan tanto?
 """
 import os
 import random
@@ -83,6 +90,7 @@ def main(budget: float):
     for s in corpus:
         seen |= coverage_of(s)
     print(f"Corpus inicial: {len(corpus)} semillas, {len(seen)} lineas cubiertas")
+    print(f"Fuzzeando durante {budget:.0f}s ... (Ctrl+C para parar)")
 
     start, execs = time.time(), 0
     while time.time() - start < budget:
@@ -101,6 +109,9 @@ def main(budget: float):
             print(f"  [{time.time() - start:5.1f}s] +cobertura ({len(seen)} lineas): {child[:60]!r}")
 
     print(f"Corpus final: {len(corpus)} entradas")
+    if len(corpus) == len(load_seeds()):
+        print("   ⚠ El corpus no ha crecido: ninguna mutacion ha descubierto codigo nuevo.\n"
+              "     ¿Has completado mutate()? (TODO 1)")
     return crashes.report(execs, time.time() - start)
 
 

@@ -28,14 +28,20 @@
 
 # EJERCICIO 4 (TODO): restricciones semanticas.
 # La gramatica genera MSG con longitudes aleatorias que casi nunca coinciden
-# con el payload, asi que el parser las rechaza. Escribe restricciones con
-# `where ...` para que:
-#   1) la longitud declarada coincida con la longitud real del payload
-#   2) (y luego...) ¿que pasa con mensajes largos?
-# Pistas de sintaxis:
-#   where forall <m> in <msg>: int(<m>.<length>) == ...
-#   where exists <m> in <msg>: ...
-#   str(<m>.<payload>)  -> el payload como string
+# con el payload, asi que el parser los rechaza y nunca llega a procesarlos.
+#
+# Paso 1: quita el "#" de la linea de abajo y completa el "..." para que la
+#         longitud declarada coincida con la longitud real del payload.
+#         (str(<m>.<payload>) es el payload como texto)
+#         Ejecuta. ¿Aparece algun bug nuevo? ¿Que longitudes salen?
+#
+# where forall <m> in <msg>: int(<m>.<length>) == ...
+#
+# Paso 2: ¿y si los mensajes son LARGOS? Anade una segunda restriccion.
+#         Ojo: "forall" se cumple aunque no haya ningun MSG. Para OBLIGAR a
+#         que exista al menos uno que cumpla algo, usa "exists":
+#
+# where exists <m> in <msg>: ...
 #
 # ⭐ EJERCICIO 4, SI VAS RAPIDO: arregla el bug que acabas de encontrar en
 #    target/egc_parser.py (funcion cmd_msg) y vuelve a lanzar el ejercicio.

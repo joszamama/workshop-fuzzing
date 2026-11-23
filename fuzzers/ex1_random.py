@@ -32,6 +32,10 @@ def random_input() -> bytes:
 
 
 def main(budget: float):
+    print("Asi son tus entradas aleatorias (3 ejemplos):")
+    for _ in range(3):
+        print(f"   {random_input()[:70]!r}")
+    print(f"Fuzzeando durante {budget:.0f}s ... (Ctrl+C para parar)")
     crashes = CrashCollector("random")
     start, execs = time.time(), 0
     while time.time() - start < budget:
