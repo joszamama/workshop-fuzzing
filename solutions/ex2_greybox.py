@@ -20,7 +20,7 @@ import random
 import sys
 import time
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fuzzers"))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "fuzzers"))  # solo para harness.py
 from harness import CrashCollector, run_one
 
 TARGET_FILE = "egc_parser.py"
