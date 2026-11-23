@@ -59,14 +59,19 @@ def generate(fan_file: str, n: int, quiet: bool = False) -> list:
         inputs = []
         for name in sorted(os.listdir(out)):
             with open(os.path.join(out, name), "rb") as f:
-                inputs.append(f.read())
+                # En Windows, Fandango escribe en modo texto y convierte \n en \r\n
+                inputs.append(f.read().replace(b"\r\n", b"\n"))
         return inputs
     finally:
         shutil.rmtree(out, ignore_errors=True)
 
 
 def main(fan_file: str, n: int):
-    print(f"Generando {n} entradas con Fandango desde {os.path.relpath(fan_file)} ...")
+    try:
+        shown = os.path.relpath(fan_file)
+    except ValueError:  # Windows: fichero en otra unidad (C: vs D:)
+        shown = fan_file
+    print(f"Generando {n} entradas con Fandango desde {shown} ...")
     start = time.time()
     inputs = generate(fan_file, n)
     crashes = CrashCollector("grammar")
