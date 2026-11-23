@@ -31,7 +31,9 @@ def lint(fan_file: str) -> str:
     with open(fan_file, encoding="utf-8") as f:
         for no, line in enumerate(f, 1):
             code = line.split("#", 1)[0] if not line.lstrip().startswith("where") else line
-            if code.count('"') % 2:
+            if code.lstrip().startswith("where") and "..." in code:
+                hints.append(f"  linea {no}: has dejado el '...' sin completar ->  {line.rstrip()}")
+            elif code.count('"') % 2:
                 hints.append(f"  linea {no}: comillas \" sin cerrar ->  {line.rstrip()}")
             elif code.count("<") != code.count(">") and "where" not in code:
                 hints.append(f"  linea {no}: < y > no cuadran ->  {line.rstrip()}")

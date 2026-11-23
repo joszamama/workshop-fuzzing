@@ -55,6 +55,8 @@ def coverage_of(data: bytes) -> frozenset:
 
 # ---------------------------------------------------------------- mutaciones
 def mutate(data: bytes) -> bytes:
+    if not data:                      # entrada vacia: devolvemos un byte aleatorio
+        return bytes([random.randrange(256)])
     data = bytearray(data)
     choice = random.randint(0, 2)
 
