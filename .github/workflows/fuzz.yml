@@ -18,7 +18,7 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Ejecutar fuzzers
-        run: python fuzzers/ci_fuzz.py 15
+        run: python solutions/ci_fuzz.py 15
 
       - name: Subir entradas que provocan crash
         if: failure()
