@@ -34,22 +34,35 @@ SEED_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "seeds
 
 
 # ---------------------------------------------------------------- cobertura
+# Hasta Python 3.11, poner y quitar el trazador en cada ejecucion es gratis.
+# Desde 3.12 es lento, y en 3.13+ agota un contador interno de Python
+# ("OverflowError: events set too many times") tras ~8 millones de ejecuciones.
+# Por eso, desde 3.12 lo instalamos una sola vez y lo dejamos puesto.
+KEEP_TRACER = sys.version_info >= (3, 12)
+_lines = None    # conjunto donde el trazador apunta las lineas (None = no apuntar)
+
+
+def _tracer(frame, event, arg):
+    """Python llama a esta funcion en cada linea que ejecuta el objetivo."""
+    if _lines is None or not frame.f_code.co_filename.endswith(TARGET_FILE):
+        return None
+    if event == "line":
+        _lines.add(frame.f_lineno)
+    return _tracer
+
+
 def coverage_of(data: bytes) -> frozenset:
     """Ejecuta el objetivo y devuelve las lineas que se han ejecutado."""
-    lines = set()
-
-    def tracer(frame, event, arg):
-        if not frame.f_code.co_filename.endswith(TARGET_FILE):
-            return None
-        if event == "line":
-            lines.add(frame.f_lineno)
-        return tracer
-
-    sys.settrace(tracer)
+    global _lines
+    if sys.gettrace() is not _tracer:
+        sys.settrace(_tracer)
+    _lines = lines = set()
     try:
         run_one(data)
     finally:
-        sys.settrace(None)
+        _lines = None
+        if not KEEP_TRACER:
+            sys.settrace(None)
     return frozenset(lines)
 
 
@@ -111,6 +124,7 @@ def main(budget: float):
             corpus.append(child)
             print(f"  [{time.time() - start:5.1f}s] +cobertura ({len(seen)} lineas): {child[:60]!r}")
 
+    sys.settrace(None)                            # fin: quitamos el trazador
     print(f"Corpus final: {len(corpus)} entradas")
     if len(corpus) == len(load_seeds()):
         print("   ⚠ El corpus no ha crecido: ninguna mutacion ha descubierto codigo nuevo.\n"
