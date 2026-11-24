@@ -65,7 +65,7 @@ elif choice == 2:
 **Qué señalar:**
 - **"Válidas: ~85%"** frente al 0% del aleatorio. La gramática "habla el idioma" del programa.
 - Pregunta: *¿y los MSG?* La gramática genera `MSG 7880796871807:XEq...`, sintácticamente correcto pero con una longitud que no cuadra. La gramática no entiende la **semántica**.
-- ⭐ El bug de `"²"`: en Python, `"²".isdigit()` da `True` pero `int("²")` falla. La gramática solo genera lo que tú le dices: si no imaginas Unicode, no lo prueba.
+- ⭐ El bug de los números gigantes: Python se niega a convertir con `int()` cadenas de más de 4300 dígitos y lanza `ValueError`, y el parser no cuenta con ello. La gramática solo genera lo que tú le dices: si no imaginas números enormes, no los prueba.
 
 ## Ej. 4: Restricciones
 
@@ -110,4 +110,4 @@ where exists <m> in <msg>: int(<m>.<length>) > 32
 | Aleatorio | Entrada vacía | No pasa de la cabecera |
 | Greybox | Backdoor `DEBUG` | La cobertura no ve la profundidad; muta bytes, no estructura |
 | Gramática | Paréntesis anidados | No entiende relaciones entre campos |
-| Gramática + restricciones | Overflow de `MSG` | Solo prueba lo que modelas (el bug de `²`) |
+| Gramática + restricciones | Overflow de `MSG` | Solo prueba lo que modelas (el bug de los números gigantes) |

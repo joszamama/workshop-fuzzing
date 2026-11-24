@@ -22,9 +22,9 @@
 <char>     ::= r"[a-zA-Z0-9 !?.]"
 
 # ⭐ EJERCICIO 3, SI VAS RAPIDO: la gramatica solo genera lo que tu le dices.
-#    Cambia <number> para que a veces use digitos "raros", p.ej.:
-#        <number> ::= (<digit> | "²")+
-#    ¿Encuentras un bug nuevo? ¿Por que ocurre? (Pista: "²".isdigit() en Python)
+#    Anade a <number> una alternativa con numeros GIGANTES (5000 digitos):
+#        <number> ::= <digit>+ | r"[0-9]{5000}"
+#    ¿Bug nuevo? ¿Por que? (Pista: int("9" * 5000). Al acabar, deja <number> como estaba.)
 
 # EJERCICIO 4 (TODO): restricciones semanticas.
 # La gramatica genera MSG con longitudes aleatorias que casi nunca coinciden

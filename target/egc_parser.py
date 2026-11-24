@@ -108,7 +108,7 @@ class Calc:
             self.depth -= 1
             return value
         start = self.pos
-        while self.peek().isdigit():
+        while self.peek().isascii() and self.peek().isdigit():
             self.pos += 1
         if start == self.pos:
             raise ParseError(f"se esperaba un numero en posicion {self.pos}")
@@ -137,7 +137,7 @@ def cmd_msg(arg: str) -> str:
     if ":" not in arg:
         raise ParseError("MSG sin ':'")
     length_str, payload = arg.split(":", 1)
-    if not length_str.isdigit():
+    if not (length_str.isascii() and length_str.isdigit()):
         raise ParseError("longitud no numerica")
     length = int(length_str)
     if length != len(payload):

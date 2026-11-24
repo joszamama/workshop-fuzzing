@@ -66,7 +66,7 @@ Las entradas que provocan crash se guardan en `crashes/`. Para reproducir una:
 |---|---------|---------|--------|------------------|
 | 1 | Fuzzing aleatorio (blackbox) | [fuzzers/ex1_random.py](fuzzers/ex1_random.py) | ~5 min | Fuzzer "con trampa" que empieza por `EGC/1` |
 | 2 | Fuzzing guiado por cobertura (greybox) | [fuzzers/ex2_greybox.py](fuzzers/ex2_greybox.py) | ~12 min | Diccionario de palabras clave / sin semillas |
-| 3 | Fuzzing con gramáticas (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | El bug secreto de Unicode |
+| 3 | Fuzzing con gramáticas (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | El bug secreto de los números gigantes |
 | 4 | Gramáticas + restricciones (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | Arregla el bug y comprueba que desaparece |
 | 5 | CI/CD: fuzzing en cada push (GitHub Actions) | [.github/workflows/fuzz.yml](.github/workflows/fuzz.yml) | ~10 min | Fuzzing nocturno con `schedule` |
 
