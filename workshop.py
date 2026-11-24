@@ -5,8 +5,8 @@ Punto de entrada unico del taller. NO hace falta activar ningun entorno virtual.
     python workshop.py check        comprueba que todo funciona
     python workshop.py ex1          ejercicio 1: fuzzing aleatorio
     python workshop.py ex2          ejercicio 2: fuzzing guiado por cobertura
-    python workshop.py ex3          ejercicios 3 y 4: gramaticas (Fandango)
-    python workshop.py ci           lo mismo que ejecuta GitHub Actions
+    python workshop.py ex3          ejercicio 3: gramaticas (Fandango)
+    python workshop.py ci           ejercicio 4: lo mismo que ejecuta GitHub Actions
     python workshop.py repro FICH   reproduce un crash guardado en crashes/
 
 En Windows, si "python" no funciona, prueba con "py" (p.ej. py workshop.py setup).
@@ -25,7 +25,7 @@ COMMANDS = {
     "ex1": os.path.join("fuzzers", "ex1_random.py"),
     "ex2": os.path.join("fuzzers", "ex2_greybox.py"),
     "ex3": os.path.join("fuzzers", "ex3_grammar.py"),
-    "ex4": os.path.join("fuzzers", "ex3_grammar.py"),
+    "ex4": os.path.join("fuzzers", "ci_fuzz.py"),   # el ejercicio 4 es el CI: igual que "ci"
     "ci": os.path.join("fuzzers", "ci_fuzz.py"),
     "repro": os.path.join("target", "egc_parser.py"),
 }

@@ -26,14 +26,14 @@
 #        <number> ::= <digit>+ | r"[0-9]{5000}"
 #    ¿Bug nuevo? ¿Por que? (Pista: int("9" * 5000). Al acabar, deja <number> como estaba.)
 
-# EJERCICIO 4 (TODO): restricciones semanticas.
+# RETO PARA CASA (TODO): restricciones semanticas. Aqui se esconde el cuarto bug.
 # La gramatica genera MSG con longitudes aleatorias que casi nunca coinciden
 # con el payload, asi que el parser los rechaza y nunca llega a procesarlos.
 #
 # Paso 1: quita el "#" de la linea de abajo y completa el "..." para que la
 #         longitud declarada coincida con la longitud real del payload.
 #         (str(<m>.<payload>) es el payload como texto)
-#         Ejecuta. ¿Aparece algun bug nuevo? ¿Que longitudes salen?
+#         Ejecuta (python workshop.py ex3). ¿Aparece algun bug nuevo? ¿Que longitudes salen?
 #
 # where forall <m> in <msg>: int(<m>.<length>) == ...
 #
@@ -43,7 +43,7 @@
 #
 # where exists <m> in <msg>: ...
 #
-# ⭐ EJERCICIO 4, SI VAS RAPIDO: arregla el bug que acabas de encontrar en
-#    target/egc_parser.py (funcion cmd_msg) y vuelve a lanzar el ejercicio.
+# ⭐ Y DESPUES: arregla el bug que acabas de encontrar en
+#    target/egc_parser.py (funcion cmd_msg) y vuelve a lanzarlo.
 #    ¿Desaparece el bug? Asi se usa el fuzzing en la vida real: encontrar,
 #    arreglar y comprobar que no vuelve (test de regresion).

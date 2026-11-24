@@ -12,11 +12,11 @@ y otra en esta rama (por si algo falla). Pon un temporizador visible.
 | Ej. 1 Aleatorio | 4' | 3' | 7' |
 | Ej. 2 Greybox | 8' | 5' | 13' |
 | Ej. 3 Gramáticas | 6' | 4' | 10' |
-| Ej. 4 Restricciones | 8' | 5' | 13' |
-| Ej. 5 CI/CD | 5' | 5' | 10' |
-| **Total** | | | **~56'** |
+| Ej. 4 CI/CD | 5' | 5' | 10' |
+| **Total** | | | **~43'** |
+| Reto: Restricciones (para casa) | 8' | 5' | 13' |
 
-Si vas mal de tiempo, recorta primero el "ellos" del Ej. 4 y hazlo directamente en directo.
+El reto de las restricciones ya no entra en la clase: es para casa. Solo si vas sobrado de tiempo, hazlo en directo antes del Ej. 4.
 
 ---
 
@@ -63,11 +63,12 @@ elif choice == 2:
 `python workshop.py ex3`
 
 **Qué señalar:**
-- **"Válidas: ~85%"** frente al 0% del aleatorio. La gramática "habla el idioma" del programa.
+- **"Rechazadas en la cabecera: 0%"** y alrededor de un **25% de válidas**, frente al 0% del aleatorio. La gramática "habla el idioma" del programa.
+- El resto, unas tres de cada cuatro, las rechaza **después**. Ese es el gancho del reto para casa.
 - Pregunta: *¿y los MSG?* La gramática genera `MSG 7880796871807:XEq...`, sintácticamente correcto pero con una longitud que no cuadra. La gramática no entiende la **semántica**.
 - ⭐ El bug de los números gigantes: Python se niega a convertir con `int()` cadenas de más de 4300 dígitos y lanza `ValueError`, y el parser no cuenta con ello. La gramática solo genera lo que tú le dices: si no imaginas números enormes, no los prueba.
 
-## Ej. 4: Restricciones
+## Reto para casa: Restricciones (en directo solo si sobra tiempo)
 
 **En directo**, en dos pasos (ejecuta entre uno y otro):
 ```
@@ -84,17 +85,18 @@ where exists <m> in <msg>: int(<m>.<length>) > 32
 - Las restricciones expresan lo que el programa **espera**; el bug vive justo en el borde de lo que espera.
 - Estos patrones (campo de longitud + payload, checksums) están en casi todos los formatos binarios reales: PNG, ZIP, TLS...
 
-## Ej. 5: CI/CD
+## Ej. 4: CI/CD
 
 **En directo:**
-1. Haz push de tu `main` con los 4 ejercicios resueltos a **un fork tuyo de prueba** (prepáralo antes de clase).
-2. Enseña la pestaña Actions en rojo, el log con los 4 bugs y descarga el artifact `crashes`.
+1. Haz push de tu `main` con los 3 ejercicios resueltos a **un fork tuyo de prueba** (prepáralo antes de clase).
+   Si además subes el reto de las restricciones, el informe enseña el cuarto bug.
+2. Enseña la pestaña Actions en rojo, el log con los 3 bugs (4 con el reto) y descarga el artifact `crashes`.
 3. Arregla un bug en directo, por ejemplo el de `checksum`:
    ```python
    if not data:
        raise ParseError("mensaje vacio")
    ```
-   Haz push y enseña que el informe baja de 4 bugs a 3.
+   Haz push y enseña que el informe tiene un bug menos.
 
 **Qué señalar:**
 - Pregunta: *el pipeline estaba en verde al principio, ¿significaba que no había bugs?* No: solo que los fuzzers no buscaban. **El verde es tan bueno como tus tests.**
@@ -110,4 +112,4 @@ where exists <m> in <msg>: int(<m>.<length>) > 32
 | Aleatorio | Entrada vacía | No pasa de la cabecera |
 | Greybox | Backdoor `DEBUG` | La cobertura no ve la profundidad; muta bytes, no estructura |
 | Gramática | Paréntesis anidados | No entiende relaciones entre campos |
-| Gramática + restricciones | Overflow de `MSG` | Solo prueba lo que modelas (el bug de los números gigantes) |
+| Gramática + restricciones (reto para casa) | Overflow de `MSG` | Solo prueba lo que modelas (el bug de los números gigantes) |

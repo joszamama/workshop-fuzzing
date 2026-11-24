@@ -10,7 +10,7 @@ Cada técnica de fuzzing desbloquea bugs que la anterior no puede encontrar.
 
 1. **Haz fork** de este repo: botón **Fork** (arriba a la derecha) → **Create fork**.
 2. En **tu fork**, ve a la pestaña **Actions** y pulsa **"I understand my workflows, go ahead and enable them"**.
-   (GitHub desactiva Actions en los forks. Sin este paso, el ejercicio 5 no funciona.)
+   (GitHub desactiva Actions en los forks. Sin este paso, el ejercicio 4 no funciona.)
 3. Descarga **tu fork** en tu portátil:
    - Con git: `git clone https://github.com/TU-USUARIO/workshop-fuzzing.git`
    - Sin git: botón verde **Code → Download ZIP** y descomprímelo.
@@ -39,8 +39,8 @@ con todo instalado. Es gratis con tu cuenta de GitHub (no pide tarjeta).
 | `python workshop.py check` | Comprueba que todo funciona |
 | `python workshop.py ex1` | Ejercicio 1: fuzzing aleatorio |
 | `python workshop.py ex2` | Ejercicio 2: fuzzing guiado por cobertura |
-| `python workshop.py ex3` | Ejercicios 3 y 4: gramáticas (lee `grammars/egc.fan`) |
-| `python workshop.py ci` | Lo mismo que ejecuta GitHub Actions |
+| `python workshop.py ex3` | Ejercicio 3: gramáticas (lee `grammars/egc.fan`) |
+| `python workshop.py ci` | Ejercicio 4: lo mismo que ejecuta GitHub Actions |
 | `python workshop.py repro crashes/<fichero>` | Reproduce un crash |
 
 Los ejercicios 1 y 2 no necesitan nada instalado: funcionan aunque el Wi-Fi se caiga.
@@ -67,12 +67,14 @@ Las entradas que provocan crash se guardan en `crashes/`. Para reproducir una:
 | 1 | Fuzzing aleatorio (blackbox) | [fuzzers/ex1_random.py](fuzzers/ex1_random.py) | ~5 min | Fuzzer "con trampa" que empieza por `EGC/1` |
 | 2 | Fuzzing guiado por cobertura (greybox) | [fuzzers/ex2_greybox.py](fuzzers/ex2_greybox.py) | ~12 min | Diccionario de palabras clave / sin semillas |
 | 3 | Fuzzing con gramáticas (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | El bug secreto de los números gigantes |
-| 4 | Gramáticas + restricciones (Fandango) | [grammars/egc.fan](grammars/egc.fan) | ~12 min | Arregla el bug y comprueba que desaparece |
-| 5 | CI/CD: fuzzing en cada push (GitHub Actions) | [.github/workflows/fuzz.yml](.github/workflows/fuzz.yml) | ~10 min | Fuzzing nocturno con `schedule` |
+| 4 | CI/CD: fuzzing en cada push (GitHub Actions) | [.github/workflows/fuzz.yml](.github/workflows/fuzz.yml) | ~10 min | Fuzzing nocturno con `schedule` |
+
+🏠 **Reto para casa: el cuarto bug.** Con los ejercicios 1 a 3 encontrarás tres bugs. Queda uno, y la técnica que lo encuentra
+(gramáticas con **restricciones**) está preparada al final de [grammars/egc.fan](grammars/egc.fan). Los pasos, en [HOMEWORK.md](HOMEWORK.md).
 
 Cada fichero tiene marcados los `TODO`, unas preguntas para pensar y un **⭐ extra opcional** al final por si terminas antes. Si no te da tiempo al extra, sigue con el siguiente ejercicio cuando lo diga el profe. Edítalo y lánzalo con `python workshop.py exN`.
 
-### Ejercicio 5: CI/CD
+### Ejercicio 4: CI/CD
 
 1. Comprueba que activaste *Actions* en tu fork (paso 2 de "Antes de clase").
 2. Sube tus cambios a tu fork:

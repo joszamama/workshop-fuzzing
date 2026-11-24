@@ -1,5 +1,17 @@
 # Para seguir aprendiendo
 
+## Lo primero: el cuarto bug
+En clase encontraste tres bugs. Queda uno, y ya viste la pista: con la gramática del ejercicio 3, el programa
+**rechaza la mayoría de las entradas**. ¿Por qué, si la gramática dice cómo son?
+
+1. Mira los `MSG` que salen en tu terminal (`python workshop.py ex3`). ¿Qué dice el número? ¿Y el texto?
+2. Abre [grammars/egc.fan](grammars/egc.fan) y ve al final, a **RETO PARA CASA**. Ahí hay dos líneas `where` por completar:
+   son **restricciones**, condiciones en Python que las entradas generadas tienen que cumplir.
+3. Completa el paso 1, ejecuta `python workshop.py ex3`, y después el paso 2.
+4. Haz push: el CI lanza la gramática con y sin restricciones, y el informe pasa de tres bugs a cuatro.
+
+La solución está en la rama [`solutions`](../../tree/solutions) (`solutions/egc.fan`). Si lo encuentras, o te atascas, escríbeme.
+
 ## Lecturas
 - **[The Fuzzing Book](https://www.fuzzingbook.org/)** (Zeller et al.). Gratis, interactivo y en Python. Es la mejor entrada al tema.
 - **[Fandango](https://fandango-fuzzer.github.io/)**: documentación y tutorial de fuzzing con gramáticas y restricciones.

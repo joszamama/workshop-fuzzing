@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "target"))
 from egc_parser import ParseError, process  # noqa: E402
 
 CRASH_DIR = os.path.join(os.path.dirname(__file__), "..", "crashes")
+ALL_BUGS = set()  # firmas de todos los bugs vistos en esta ejecucion, sea cual sea el fuzzer
 
 
 def classify(data: bytes):
@@ -50,6 +51,7 @@ class CrashCollector:
         self.stats[result] += 1
         if sig is None:
             return False
+        ALL_BUGS.add(sig)
         if sig not in self.crashes:
             self.crashes[sig] = data
             print(f"\n  💥 NUEVO BUG: {sig}\n     entrada: {data[:80]!r}")

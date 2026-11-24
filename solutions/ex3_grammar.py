@@ -1,8 +1,9 @@
 """
-EJERCICIOS 3 y 4 -- Fuzzing con gramaticas y restricciones (Fandango)
-=====================================================================
+EJERCICIO 3 -- Fuzzing con gramaticas (Fandango)
+================================================
 Genera entradas con Fandango a partir de una gramatica (.fan) y las lanza
 contra el programa. Lo que tienes que editar es grammars/egc.fan.
+El reto para casa (restricciones) se lanza igual: mira HOMEWORK.md.
 
 Ejecuta:   python workshop.py ex3                          (usa grammars/egc.fan)
            python workshop.py ex3 -n 500                   (genera 500 entradas)
