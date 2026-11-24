@@ -58,7 +58,7 @@ elif choice == 2:
 
 **En directo** (`grammars/egc.fan`):
 ```
-<factor>   ::= <number> | "(" <expr> ")"
+<expr>     ::= <number> | <expr> <op> <expr> | "(" <expr> ")"
 ```
 `python workshop.py ex3`
 

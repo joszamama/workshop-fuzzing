@@ -8,12 +8,12 @@
 
 # ---- CALC <expresion> ----------------------------------------------------
 <calc>     ::= "CALC " <expr>
-<expr>     ::= <term> | <term> ("+" | "-") <expr>
-<term>     ::= <factor> | <factor> ("*" | "/") <term>
-# EJERCICIO 3 (TODO): un factor tambien puede ser una expresion entre parentesis.
-#                     Anade esa alternativa a la regla <factor>.
-<factor>   ::= <number>
+# EJERCICIO 3 (TODO): una expresion tambien puede ir entre parentesis.
+#                     Anade esa alternativa a la regla <expr>.
+<expr>     ::= <number> | <expr> <op> <expr>
+<op>       ::= "+" | "-" | "*" | "/"
 <number>   ::= <digit>+
+# (<digit> es un digito del 0 al 9: ya viene definido en Fandango)
 
 # ---- MSG <longitud>:<payload> --------------------------------------------
 <msg>      ::= "MSG " <length> ":" <payload>

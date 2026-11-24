@@ -4,9 +4,8 @@
 <command>  ::= <calc> | <msg>
 
 <calc>     ::= "CALC " <expr>
-<expr>     ::= <term> | <term> ("+" | "-") <expr>
-<term>     ::= <factor> | <factor> ("*" | "/") <term>
-<factor>   ::= <number> | "(" <expr> ")"
+<expr>     ::= <number> | <expr> <op> <expr> | "(" <expr> ")"
+<op>       ::= "+" | "-" | "*" | "/"
 <number>   ::= <digit>+
 
 <msg>      ::= "MSG " <length> ":" <payload>
